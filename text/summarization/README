@@ -1,0 +1,42 @@
+This is a standard attentive sequence to sequence model.
+It is used for automatic text summarization. On Facebook's Gigaword dataset, it achives 42 Rouge-F1
+score, beating the state-of-the-art (36), as of June 2016.
+
+It is a fairly standard model consists of 3 parts:
+1. Encoder sequence: Encoding the article inputs.
+2. Attention: Pay attention to part of the encoding inputs, i.e. focus on import words for summary.
+3. Decoder: Generate summary.
+
+Experiments:
+5 encoder layers, using the first 120 words from article to ~10 words summary.
+Word embbeding size is 128. Hidden units 256. 200k vocabulary size. 4k sampled softmax.
+---------------------------------------------
+unnamed ROUGE-1 Average_R: 0.38795 (95%-conf.int. 0.38284 - 0.39348)
+unnamed ROUGE-1 Average_P: 0.48599 (95%-conf.int. 0.47977 - 0.49232)
+unnamed ROUGE-1 Average_F: 0.42315 (95%-conf.int. 0.41773 - 0.42884)
+
+4 encoder layers seems to do slightly better.
+---------------------------------------------
+unnamed ROUGE-1 Average_R: 0.38272 (95%-conf.int. 0.37774 - 0.38755)
+unnamed ROUGE-1 Average_P: 0.50154 (95%-conf.int. 0.49509 - 0.50780)
+unnamed ROUGE-1 Average_F: 0.42568 (95%-conf.int. 0.42016 - 0.43099)
+
+
+Examples:
+article: google inc. plans to open the auction for its hotly anticipated ipo friday and set the final price next week , despite legal questions about a newly published playboy interview with the founders of the online search engine .
+
+human: google founders ' playboy interview may raise regulatory concerns
+
+machine:  google to open auction for ipo
+====================
+article: novell inc. chief executive officer eric schmidt has been named chairman of the internet search-engine company google .
+
+human: novell ceo named google chairman
+
+machine:  novell chief executive named to head internet company
+===================
+article: gulf newspapers voiced skepticism thursday over whether newly re - elected us president bill clinton could help revive the troubled middle east peace process but saw a glimmer of hope .
+
+human: gulf skeptical about whether clinton will revive peace process
+
+machine:  gulf press skeptical over clinton 's prospects for peace process
